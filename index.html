@@ -4,68 +4,51 @@
     <meta charset="UTF-8">
     <title>Rock, Paper, Scissors</title>
     <script>
-      
-      let choiceValue = ['rock', 'paper', 'scissors'];
-      let computerSelection = choiceValue[Math.floor(Math.random() * choiceValue.length)];
+
+    //global variables  
+      let computerChoices = ['rock', 'paper', 'scissors'];
+      let computerSelection = computerChoices[Math.floor(Math.random() * computerChoices.length)];
       let youLose = "You lose!";
       let youWin = "You win!";
       let itsATie = "It's a tie!";
-
-
+      let computerScore = 0;
+      let playerScore = 0;
+    
+      //computer chooses
       function getComputerChoice(){
         return computerSelection;
       }
-      
 
       function playRound(playerSelection, computerSelection){
         //Player is loser
-        if(playerSelection.toLowerCase() === "rock" && computerSelection === "paper"){
-          return youLose;
-        }else if (playerSelection.toLowerCase() === "paper" && computerSelection === "scissors"){
-          return youLose;
-        }else if (playerSelection.toLowerCase() === "scissors" && computerSelection === "rock"){
+        if(playerSelection.toLowerCase() === "rock" && computerSelection === "paper" || playerSelection.toLowerCase() === "paper" && computerSelection === "scissors" || playerSelection.toLowerCase() === "scissors" && computerSelection === "rock")        
+        {
+          computerScore++;
           return youLose;
         //Player is winner
-        }else if (playerSelection.toLowerCase() === "rock" && computerSelection === "scissors"){
+        }else if (playerSelection.toLowerCase() === "rock" && computerSelection === "scissors" || playerSelection.toLowerCase() === "paper" && computerSelection === "rock" || playerSelection.toLowerCase() === "scissors" && computerSelection === "paper"){
+          playerScore++;
           return youWin;
-        }else if (playerSelection.toLowerCase() === "paper" && computerSelection === "rock"){
-          return youWin;
-        }else if(playerSelection.toLowerCase() === "scissors" && computerSelection === "paper"){
-          return youWin;
-        }
-        //Player and Computer choose same thing
-        else{
+          //It's a tie
+        }else{
           return itsATie;
         }
       }
-      let playerSelection = prompt("Rock, paper, or scissors?");
-     // console.log(playRound(playerSelection, computerSelection))
-     let gameResult = playRound(playerSelection, computerSelection);
-     let playerScore = 0;
-     let computerScore = 0;
-
+    
 
       function game(){
-        for (let i = 0; i < 5; i++){
-          playRound(playerSelection, computerSelection);
-          return gameResult;
+        for (let i = 0; i < 5; i++)
+          {
+            let playerSelection = prompt("Rock, paper, or scissors?");
+            let gameResult = playRound(playerSelection, computerSelection);
+            return gameResult;
         }
       }
-          
-      function score(){
-          if (gameResult === youWin){
-            playerScore++;
-            return playerScore;
-          }else if(gameResult === youLose){
-            computerScore++;
-            return computerScore;
-          }else{
-            console.log(playerScore);
-          }
-      }
     
-      console.log(game());
-      console.log(score());
+      game();
+      //Result and score!
+      console.log(game() + " " + "Computer: " + computerScore + " " + "You: " + playerScore);
+    
 
     
     </script>
@@ -74,50 +57,3 @@
 
   </body>
 </html>
-
-<!--computer chooses Rock, paper, or scissors
-//return R, P, S 
-//make computer choice = computerSelection
-//ask player for their input
-//make player input = playerSelection
-//Outcomes for Paper Beats rock, rock beats scissors, scissors beats paper (AND statements?)-
-//Game Function - loops playRound 5 times and keeps score -- reports winner of 5 rounds (or loser)
-//for (let i = 0; i < 5; i++)
-  //If between rounds 0-4 (1-5), loop runs
-  //If return === youLose, (switch?), add 1 to computerTotal
-  //if return === youWin, add 1 to playerTotal
-  after loop runs -- if playerTotal > computerTotal, YOU WIN!
-  if computerTotal > playerTotal, YOU LOSE!
-  else It's a tie!
-
-
-     function game(){
-        for (let i = 0; i < 5; i++){
-          let playerSelection = prompt("Rock, paper, or scissors?");
-          let roundResult = playRound(playerSelection, computerSelection);
-          return roundResult;
-            
-          //function gameScoreUpdate(){
-              if(roundResult === youWin){
-              playerScore++;
-              return "Your score is " + playerScore;
-              }else if(roundResult === youLose){
-              computerScore++;
-              return "Your score is " + playerScore;
-              }else{
-              return "Your score is " + playerScore;
-            }
-          console.log(gameScoreUpdate())}
-
-
-
-            if(roundResult === youWin){
-            playerScore++;
-            return "Your score is " + playerScore;
-          }else if(roundResult === youLose){
-            computerScore++;
-            return "Your score is " + playerScore;
-          }else{
-            return "Your score is " + playerScore;
-          }
-        }
