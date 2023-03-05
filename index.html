@@ -5,49 +5,58 @@
     <title>Rock, Paper, Scissors</title>
     <script>
 
-    //global variables  
-      let computerChoices = ['rock', 'paper', 'scissors'];
-      let computerSelection = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-      let youLose = "You lose!";
-      let youWin = "You win!";
-      let itsATie = "It's a tie!";
-      let computerScore = 0;
-      let playerScore = 0;
-    
-      //computer chooses
       function getComputerChoice(){
+        const computerOptions = ['rock', 'paper', 'scissors'];
+        const computerSelection = computerOptions[Math.floor(Math.random() * computerOptions.length)];
         return computerSelection;
-      }
+}
+      //global Variables
+      let draw = "You tied!";
+      let winner = "You win!";
+      let loser = "You lose!";
+      let playerScore = 0;
+      let computerScore = 0;
 
+      //play a single round
       function playRound(playerSelection, computerSelection){
-        //Player is loser
-        if(playerSelection.toLowerCase() === "rock" && computerSelection === "paper" || playerSelection.toLowerCase() === "paper" && computerSelection === "scissors" || playerSelection.toLowerCase() === "scissors" && computerSelection === "rock")        
-        {
-          computerScore++;
-          return youLose;
-        //Player is winner
-        }else if (playerSelection.toLowerCase() === "rock" && computerSelection === "scissors" || playerSelection.toLowerCase() === "paper" && computerSelection === "rock" || playerSelection.toLowerCase() === "scissors" && computerSelection === "paper"){
-          playerScore++;
-          return youWin;
-          //It's a tie
-        }else{
-          return itsATie;
-        }
+        //getComputerChoice();
+          if(playerSelection === "rock" && computerSelection === "paper" || playerSelection === "paper" && computerSelection === "scissors" || playerSelection === "scissors" && computerSelection === "rock"){
+            return loser;
+          }else if(playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "paper" && computerSelection === "rock" || playerSelection === "scissors" && computerSelection === "paper"){
+            return winner;
+          }else{
+            return draw;
+          }
       }
-    
 
+      //play five rounds
       function game(){
-        for (let i = 0; i < 5; i++)
-          {
-            let playerSelection = prompt("Rock, paper, or scissors?");
-            let gameResult = playRound(playerSelection, computerSelection);
-            return gameResult;
+        for (i = 0; i < 5; i++)
+        {
+        let playerSelection = prompt("rock, paper, or scissors?");
+        let computerSelection = getComputerChoice();
+        playRound(playerSelection, computerSelection);
+          if((playRound(playerSelection, computerSelection)) === draw){
+              alert("You and the computer have tied. Your current score is " + playerScore + " and the computer's score is " + computerScore);
+            }else if ((playRound(playerSelection, computerSelection)) === loser){
+              computerScore++;
+              alert("You lost to the computer this round. Your current score is " + playerScore + " and the computer's score is " + computerScore);
+            }else{
+              playerScore++;
+              alert("You won this round! Your current score is " + playerScore + " and the computer's score is " + computerScore);
+            }
+        }if(playerScore > computerScore){
+          //added these alerts to create breaks between rounds -- change to console.log (or return?) when time to GUI
+          alert("IT'S OVER! You win! Your final score is " + playerScore + " and the computer's score is " + computerScore);
+        }else if(computerScore > playerScore){
+          alert("IT'S OVER! You lose! Your final score is " + playerScore + " and the computer's score is " + computerScore);
+        }else{
+          alert("IT'S OVER! It was a draw...");
         }
       }
-    
-      game();
-      //Result and score!
-      console.log(game() + " " + "Computer: " + computerScore + " " + "You: " + playerScore);
+
+      console.log(game());
+
     
 
     
