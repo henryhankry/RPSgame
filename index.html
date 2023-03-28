@@ -3,66 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <title>Rock, Paper, Scissors</title>
-    <script>
-
-      function getComputerChoice(){
-        const computerOptions = ['rock', 'paper', 'scissors'];
-        const computerSelection = computerOptions[Math.floor(Math.random() * computerOptions.length)];
-        return computerSelection;
-}
-      //global Variables
-      let draw = "You tied!";
-      let winner = "You win!";
-      let loser = "You lose!";
-      let playerScore = 0;
-      let computerScore = 0;
-
-      //play a single round
-      function playRound(playerSelection, computerSelection){
-        //getComputerChoice();
-          if(playerSelection === "rock" && computerSelection === "paper" || playerSelection === "paper" && computerSelection === "scissors" || playerSelection === "scissors" && computerSelection === "rock"){
-            return loser;
-          }else if(playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "paper" && computerSelection === "rock" || playerSelection === "scissors" && computerSelection === "paper"){
-            return winner;
-          }else{
-            return draw;
-          }
-      }
-
-      //play five rounds
-      function game(){
-        for (i = 0; i < 5; i++)
-        {
-        let playerSelection = prompt("rock, paper, or scissors?");
-        let computerSelection = getComputerChoice();
-        playRound(playerSelection, computerSelection);
-          if((playRound(playerSelection, computerSelection)) === draw){
-              alert("You and the computer have tied. Your current score is " + playerScore + " and the computer's score is " + computerScore);
-            }else if ((playRound(playerSelection, computerSelection)) === loser){
-              computerScore++;
-              alert("You lost to the computer this round. Your current score is " + playerScore + " and the computer's score is " + computerScore);
-            }else{
-              playerScore++;
-              alert("You won this round! Your current score is " + playerScore + " and the computer's score is " + computerScore);
-            }
-        }if(playerScore > computerScore){
-          //added these alerts to create breaks between rounds -- change to console.log (or return?) when time to GUI
-          alert("IT'S OVER! You win! Your final score is " + playerScore + " and the computer's score is " + computerScore);
-        }else if(computerScore > playerScore){
-          alert("IT'S OVER! You lose! Your final score is " + playerScore + " and the computer's score is " + computerScore);
-        }else{
-          alert("IT'S OVER! It was a draw...");
-        }
-      }
-
-      console.log(game());
-
-    
-
-    
-    </script>
   </head>
   <body>
 
+    <div id="buttons">
+      <button id="rock">rock</button>
+      <button id="paper">paper</button>
+      <button id="scissors">scissors</button>
+    </div>
+    <script src="main.js"></script>
   </body>
 </html>
