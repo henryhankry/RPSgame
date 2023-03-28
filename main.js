@@ -36,17 +36,21 @@ buttons.forEach((button) => {
       }else{
         return draw;
       }
-  }console.log(playRound());
-  });
 
+  }const results = document.createTextNode(playRound());
+  const resultDiv = document.createElement("div");
+  resultDiv.appendChild(results);
+  document.body.appendChild(resultDiv);
   });
+  });
+  
 
   const buttonsDiv = document.getElementById("buttons");
 
-  const resultDiv = document.createElement("div");
-  const results = document.createTextNode("This is the test for the results div!");
-  resultDiv.appendChild(results);
-  document.body.appendChild(resultDiv);
+  //const resultDiv = document.createElement("div");
+  //const results = document.createTextNode("This is the test for the results div!");
+  //resultDiv.appendChild(results);
+  //document.body.appendChild(resultDiv);
 
 
 
